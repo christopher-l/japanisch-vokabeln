@@ -1,0 +1,50 @@
+% https://nablux.net/tgp/weblog/2013/03/22/how-typeset-japanese-using-xelatex/
+\documentclass[11pt]{scrartcl}
+
+\usepackage{xltxtra, setspace}
+\usepackage{xeCJK}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage[ngerman]{babel}
+
+\setCJKmainfont{Source Han Sans JP Normal}
+\setCJKsansfont{Source Han Sans JP Normal}
+\setmainfont{Source Sans Pro}
+
+\usepackage[CJK,overlap]{ruby}
+\renewcommand{\rubysep}{0ex}
+\setlength{\parindent}{0pt}
+
+\newcommand{\vocab}[4]{
+  \begin{minipage}{\columnwidth}
+  {\large#1}\\[-.4em]
+  {\scriptsize#2}\\[-2em]
+  \raggedright
+  \begin{enumerate}\itemsep0em \item #3\end{enumerate}
+  #4
+  \vspace{0em}
+  \end{minipage}
+}
+
+\newcommand{\example}[2]{
+  % \\*[.5em]
+  #1\\*[-.3em]
+  {\footnotesize #2}
+  \vspace{1em}
+}
+
+\newcommand{\comment}[1]{
+  {\color{gray}(#1)}
+}
+
+\begin{document}
+
+\section*{Verben}
+
+\begin{multicols}{3}
+
+\include{verben}
+
+\end{multicols}
+
+\end{document}
