@@ -19,16 +19,8 @@
 \newif\ifenumerate
 \newcounter{translations}
 \makeatletter
-\newcommand\vocab{\@ifstar\vocab@\vocab@@}
-\newcommand{\vocab@}[3]{\enumeratetrue
-  \begin{minipage}{\columnwidth}
-  {\large#1}\\%[-.4em]
-  \raggedright
-  \setcounter{translations}{0}
-  #2
-  \vspace{1em}
-  \end{minipage}}
-\newcommand{\vocab@@}[3]{\enumeratefalse
+\newcommand\vocab{\@ifstar{\enumeratetrue\vocab@}{\enumeratefalse\vocab@}}
+\newcommand{\vocab@}[3]{
   \begin{minipage}{\columnwidth}
   {\large#1}\\%[-.4em]
   \raggedright
@@ -37,17 +29,21 @@
   \vspace{1em}
   \end{minipage}}
 
-\newcommand{\translation}[2][]{
-  {\scriptsize#1}
+\newcommand\type[1]{
+  {\scriptsize#1\\}
+}
+
+\newcommand{\translation}[1]{
   \ifenumerate%
   \vspace{-1em}
   \begin{enumerate}[leftmargin=*]
     \setcounter{enum\romannumeral\the\@enumdepth}{\value{translations}}
     \stepcounter{translations}
-    \itemsep0em \item #2
+    \itemsep0em \item #1
   \end{enumerate}
+  \vspace{-1em}
   \else
-  \\#2
+  #1
   \fi}
 \makeatother
 
