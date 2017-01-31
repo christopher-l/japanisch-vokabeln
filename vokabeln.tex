@@ -5,6 +5,8 @@
 \usepackage{xeCJK}
 \usepackage{xcolor}
 \usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{suffix}
 \usepackage[ngerman]{babel}
 
 \setCJKmainfont{Source Han Sans JP Normal}
@@ -15,20 +17,36 @@
 \renewcommand{\rubysep}{0ex}
 \setlength{\parindent}{0pt}
 
-\newcommand{\vocab}[4]{
+\makeatletter
+\newcommand{\listintertext}{\@ifstar\listintertext@\listintertext@@}
+\newcommand{\listintertext@}[1]{% \listintertext*{#1}
+  \hspace*{-\@totalleftmargin}#1}
+\newcommand{\listintertext@@}[1]{% \listintertext{#1}
+  \hspace{-\leftmargin}#1}
+
+\newcommand{\vocab}{\@ifstar\vocab@\vocab@@}
+\newcommand{\vocab@}[4]{
   \begin{minipage}{\columnwidth}
   {\large#1}\\[-.4em]
   {\scriptsize#2}\\[-2em]
   \raggedright
-  \begin{enumerate}\itemsep0em #3\end{enumerate}
+  \begin{enumerate}[leftmargin=*]\itemsep0em #3\end{enumerate}
   \vspace{0em}
-  \end{minipage}
-}
+  \end{minipage}}
+\newcommand{\vocab@@}[4]{
+  \begin{minipage}{\columnwidth}
+  {\large#1}\\[-.4em]
+  {\scriptsize#2}\\[-2em]
+  \raggedright
+  \begin{itemize}[label={},leftmargin=0em]\itemsep0em #3\end{itemize}
+  \vspace{0em}
+  \end{minipage}}
+\makeatother
 
 \newcommand{\example}[2]{
   \\*[.5em]
-  #1\\*[-.3em]
-  {\footnotesize #2}
+  \listintertext{#1}\\*[-.2em]
+  \listintertext{\footnotesize #2}
   % \vspace{0em}
 }
 
