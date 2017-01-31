@@ -6,7 +6,6 @@
 \usepackage{xcolor}
 \usepackage{multicol}
 \usepackage{enumitem}
-\usepackage{suffix}
 \usepackage[ngerman]{babel}
 
 \setCJKmainfont{Source Han Sans JP Normal}
@@ -17,36 +16,46 @@
 \renewcommand{\rubysep}{0ex}
 \setlength{\parindent}{0pt}
 
+\newif\ifenumerate
+\newcounter{translations}
 \makeatletter
-\newcommand{\listintertext}{\@ifstar\listintertext@\listintertext@@}
-\newcommand{\listintertext@}[1]{% \listintertext*{#1}
-  \hspace*{-\@totalleftmargin}#1}
-\newcommand{\listintertext@@}[1]{% \listintertext{#1}
-  \hspace{-\leftmargin}#1}
+\newcommand\vocab{\@ifstar\vocab@\vocab@@}
+\newcommand{\vocab@}[3]{\enumeratetrue
+  \begin{minipage}{\columnwidth}
+  {\large#1}\\%[-.4em]
+  \raggedright
+  \setcounter{translations}{0}
+  #2
+  \vspace{1em}
+  \end{minipage}}
+\newcommand{\vocab@@}[3]{\enumeratefalse
+  \begin{minipage}{\columnwidth}
+  {\large#1}\\%[-.4em]
+  \raggedright
+  \setcounter{translations}{0}
+  #2
+  \vspace{1em}
+  \end{minipage}}
 
-\newcommand{\vocab}{\@ifstar\vocab@\vocab@@}
-\newcommand{\vocab@}[4]{
-  \begin{minipage}{\columnwidth}
-  {\large#1}\\[-.4em]
-  {\scriptsize#2}\\[-2em]
-  \raggedright
-  \begin{enumerate}[leftmargin=*]\itemsep0em #3\end{enumerate}
-  \vspace{0em}
-  \end{minipage}}
-\newcommand{\vocab@@}[4]{
-  \begin{minipage}{\columnwidth}
-  {\large#1}\\[-.4em]
-  {\scriptsize#2}\\[-2em]
-  \raggedright
-  \begin{itemize}[label={},leftmargin=0em]\itemsep0em #3\end{itemize}
-  \vspace{0em}
-  \end{minipage}}
+\newcommand{\translation}[2][]{
+  {\scriptsize#1}
+  \ifenumerate%
+  \vspace{-1em}
+  \begin{enumerate}[leftmargin=*]
+    \setcounter{enum\romannumeral\the\@enumdepth}{\value{translations}}
+    \stepcounter{translations}
+    \itemsep0em \item #2
+  \end{enumerate}
+  \else
+  \\#2
+  \fi}
 \makeatother
 
+
 \newcommand{\example}[2]{
-  \\*[.5em]
-  \listintertext{#1}\\*[-.2em]
-  \listintertext{\footnotesize #2}
+  % \\*[.5em]
+  #1\\*[-.2em]
+  {\footnotesize #2}
   % \vspace{0em}
 }
 
