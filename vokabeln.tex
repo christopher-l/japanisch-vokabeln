@@ -22,14 +22,15 @@
 \newcommand\vocab{\@ifstar{\enumeratetrue\vocab@}{\enumeratefalse\vocab@}}
 \newcommand{\vocab@}[3]{
   \begin{minipage}{\columnwidth}
-  {\large#1}\\%[-.4em]
+  {\large#1}\\[-1.5em]
   \raggedright
   \setcounter{translations}{0}
   #2
-  \vspace{1em}
+  \vspace{1.5em}
   \end{minipage}}
 
 \newcommand\type[1]{
+  \vskip .5em
   {\scriptsize#1\\}
 }
 
@@ -43,17 +44,14 @@
   \end{enumerate}
   \vspace{-1em}
   \else
-  #1
+  #1\\
   \fi}
 \makeatother
 
 
 \newcommand{\example}[2]{
-  % \\*[.5em]
-  #1\\*[-.2em]
-  {\footnotesize #2}
-  % \vspace{0em}
-}
+  {\small #1}\\[-.2em]
+  {\footnotesize #2}}
 
 \newcommand{\comment}[1]{
   {\color{gray}(#1)}
