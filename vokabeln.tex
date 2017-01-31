@@ -20,17 +20,16 @@
   {\large#1}\\[-.4em]
   {\scriptsize#2}\\[-2em]
   \raggedright
-  \begin{enumerate}\itemsep0em \item #3\end{enumerate}
-  #4
+  \begin{enumerate}\itemsep0em #3\end{enumerate}
   \vspace{0em}
   \end{minipage}
 }
 
 \newcommand{\example}[2]{
-  % \\*[.5em]
+  \\*[.5em]
   #1\\*[-.3em]
   {\footnotesize #2}
-  \vspace{1em}
+  % \vspace{0em}
 }
 
 \newcommand{\comment}[1]{
@@ -42,6 +41,7 @@
 \section*{Verben}
 
 \begin{multicols}{3}
+\raggedcolumns
 
 \include{verben}
 
