@@ -14,6 +14,7 @@
 
 \usepackage[CJK,overlap]{ruby}
 \renewcommand{\rubysep}{0ex}
+\renewcommand{\rubysize}{0.5}
 \setlength{\parindent}{0pt}
 
 \newif\ifenumerate
@@ -22,7 +23,8 @@
 \newcommand\vocab{\@ifstar{\enumeratetrue\vocab@}{\enumeratefalse\vocab@}}
 \newcommand{\vocab@}[3]{
   \begin{minipage}{\columnwidth}
-  {\large#1}\\[-1.5em]
+  {\large#1}
+  \par
   \raggedright
   \setcounter{translations}{0}
   #2
@@ -30,28 +32,29 @@
   \end{minipage}}
 
 \newcommand\type[1]{
-  \vskip .5em
-  {\scriptsize#1\\}
+  {\scriptsize#1}
+  \vspace{-.3em}
 }
 
 \newcommand{\translation}[1]{
-  \ifenumerate%
-  \vspace{-1em}
-  \begin{enumerate}[leftmargin=*]
+  \par
+  \ifenumerate
+  \begin{enumerate}[leftmargin=*,topsep=0em]
     \setcounter{enum\romannumeral\the\@enumdepth}{\value{translations}}
     \stepcounter{translations}
     \itemsep0em \item #1
   \end{enumerate}
-  \vspace{-1em}
   \else
-  #1\\
+  \begin{itemize}[leftmargin=*,topsep=0em,label={},labelsep=0em]
+    \itemsep0em \item #1
+  \end{itemize}
   \fi}
 \makeatother
 
 
 \newcommand{\example}[2]{
-  {\small #1}\\[-.2em]
-  {\footnotesize #2}}
+  {\small #1}\\[-.3em]
+  {\footnotesize #2}\\}
 
 \newcommand{\comment}[1]{
   {\color{gray}(#1)}
