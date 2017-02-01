@@ -18,7 +18,6 @@
 \setlength{\parindent}{0pt}
 
 \newif\ifenumerate
-\newcounter{translations}
 \makeatletter
 \newcommand\vocab{\@ifstar{\enumeratetrue\vocab@}{\enumeratefalse\vocab@}}
 \newcommand{\vocab@}[3]{
@@ -26,7 +25,6 @@
   {\large#1}
   \par
   \raggedright
-  \setcounter{translations}{0}
   #2
   \vspace{1.5em}
   \end{minipage}}
@@ -39,9 +37,7 @@
 \newcommand{\translation}[1]{
   \par
   \ifenumerate
-  \begin{enumerate}[leftmargin=*,topsep=0em]
-    \setcounter{enum\romannumeral\the\@enumdepth}{\value{translations}}
-    \stepcounter{translations}
+  \begin{enumerate}[leftmargin=*,topsep=0em,resume]
     \itemsep0em \item #1
   \end{enumerate}
   \else
@@ -50,7 +46,6 @@
   \end{itemize}
   \fi}
 \makeatother
-
 
 \newcommand{\example}[2]{
   {\small #1}\\[-.3em]
