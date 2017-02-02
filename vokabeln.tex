@@ -2,6 +2,7 @@
 
 \usepackage{xltxtra, setspace}
 \usepackage{xeCJK}
+\usepackage{hyperref}
 \usepackage{xcolor}
 \usepackage{multicol}
 \usepackage{enumitem}
@@ -20,6 +21,8 @@
 \let\oldruby\ruby
 \def\ruby#1#2{\oldruby{#1}{#2}\futurelet\next\addCJKglue}
 \def\addCJKglue{\ifx\next\ruby \CJKglue \fi}
+
+\setcounter{secnumdepth}{0}
 
 \newif\ifenumerate
 \makeatletter
@@ -63,20 +66,37 @@
   {\color{gray}(#1)}
 }
 
+\newenvironment{vocabs}[1][]
+  {\begin{multicols}{3}[#1]}
+  {\end{multicols}}
+
 \begin{document}
 
 % \raggedcolumns
 
-\section*{Substantive}
+\begin{vocabs}[\section{Substantive}]
+\input{substantive}
+\end{vocabs}
 
-\subsection*{Körper}
-\begin{multicols}{3}
-\include{koerper}
-\end{multicols}
+\begin{vocabs}[\subsection{Körper}]
+\input{koerper}
+\end{vocabs}
 
-\section*{Verben}
-\begin{multicols}{3}
-\include{verben}
-\end{multicols}
+\begin{vocabs}[\subsection{Tierkreiszeichen}]
+\input{tierkreiszeichen}
+\end{vocabs}
+
+\newpage
+\section{Verben}
+\begin{vocabs}
+\input{verben}
+\end{vocabs}
+
+\newpage
+\section{Adverbien}
+\subsection{Zeitangaben}
+\begin{vocabs}
+\input{zeitangaben}
+\end{vocabs}
 
 \end{document}
