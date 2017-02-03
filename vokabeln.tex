@@ -6,6 +6,7 @@
 \usepackage{xcolor}
 \usepackage{multicol}
 \usepackage{enumitem}
+\usepackage{needspace}
 \usepackage[ngerman]{babel}
 
 \setCJKmainfont{Source Han Sans JP Normal}
@@ -30,7 +31,7 @@
 \newcommand{\vocab@}[2]{
   \begin{minipage}{\columnwidth}
   \raggedright
-  {\LARGE#1}
+  {\Large#1}
   \par
   #2
   \vspace{.8em}
@@ -67,7 +68,8 @@
 }
 
 \newenvironment{vocabs}[1][]
-  {\begin{multicols}{3}[#1]}
+  {\Needspace{5\baselineskip}
+   #1\begin{multicols}{3}}
   {\end{multicols}}
 
 \begin{document}
