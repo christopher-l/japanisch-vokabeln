@@ -68,7 +68,7 @@
 }
 
 \newenvironment{vocabs}[1][]
-  {\Needspace{5\baselineskip}
+  {\Needspace{8\baselineskip}
    #1\begin{multicols}{3}}
   {\end{multicols}}
 
@@ -79,7 +79,20 @@
 \input{wendungen}
 \end{vocabs}
 
+\newpage
+\section{Misc}
+% \begin{vocabs}
+% \input{misc}
+% \end{vocabs}
+\begin{vocabs}[\subsection{Zahlen}]
 \input{zahlen}
+\end{vocabs}
+\begin{vocabs}[\subsection{Zählworte}]
+\input{zählworte}
+\end{vocabs}
+\begin{vocabs}[\subsection{Frageworte}]
+\input{frageworte}
+\end{vocabs}
 
 \newpage
 \begin{vocabs}[\section{Substantive}]
@@ -112,12 +125,6 @@
 \section{Adjektive}
 \begin{vocabs}
 \input{adjektive}
-\end{vocabs}
-
-\newpage
-\section{Misc}
-\begin{vocabs}
-\input{misc}
 \end{vocabs}
 
 \end{document}
